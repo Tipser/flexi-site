@@ -1,0 +1,136 @@
+@import '~@tipser/tipser-elements/dist/all.css';
+
+body {
+  margin: 0;
+  color: #222;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  color: #444;
+  h1,
+  h2,
+  h3 {
+    font-weight: 400;
+    color: #444;
+  }
+
+  h1 {
+    margin: 0 0 15px;
+    font-size: 36px;
+    line-height: 42px;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  h3 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.site-body,
+.site-header {
+  width: 100%;
+}
+
+.site-body {
+  margin-top: 50px;
+}
+
+.te-product-basic-info {
+}
+
+.te-article {
+  p {
+    font-size: 1em;
+    line-height: 1.44444;
+  }
+
+  ul {
+    padding-inline-start: 1.5em;
+
+    li {
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.te-columns {
+  .te-article {
+    p {
+      font-size: 1em;
+    }
+
+    .te-article-content-container {
+      align-items: initial;
+      align-content: center;
+    }
+  }
+}
+
+.te-page {
+  .te-hero-component {
+    width: 100%;
+  }
+
+  .te-link {
+    .te-product.te-product-full {
+      max-width: 1000px;
+    }
+  }
+}
+
+.te-site {
+  margin: auto;
+
+  header,
+  footer {
+    margin: 0 auto;
+  }
+}
+
+.te-product-details {
+  font-size: 19px;
+  .te-dropdown-container {
+    .te-dropdown-select {
+      border-radius: 4px;
+    }
+  }
+}
+
+.te-button-default {
+  .te-button-body {
+    border-radius: 4px;
+  }
+  .te-button-text {
+    font-size: 1.2em;
+    font-weight: 400;
+  }
+}
+
+//@media only screen and (max-width: 767px) {
+@media (max-width: 767px) {
+  div > .te-added-to-cart {
+    top: -400px;
+    left: 5px;
+    right: 5px;
+    margin: 0 auto;
+    width: calc(100% - 4em);
+    bottom: initial;
+    animation-name: slide-top;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+}
+
+/* Standard syntax */
+@keyframes slide-top {
+  from {
+    transform: translatey(0);
+  }
+  to {
+    transform: translatey(410px);
+  }
+}
