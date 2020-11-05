@@ -15,8 +15,6 @@ import {
 } from '@tipser/tipser-elements/dist/all';
 import Header from '../header';
 import Footer from '../footer';
-import { CustomCollection } from '../../views/custom-collection/custom-collection';
-import { ModularProducts } from '../../views/modular-products/modular-products';
 import './App.scss';
 import '@tipser/tipser-elements/dist/index.css';
 import { FrenchProduct } from '../../views/french-product/french-product';
