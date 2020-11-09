@@ -84,7 +84,5 @@ select {
 
 .content {
   display: flex;
-  //we do it with flex-direction: column because ProductContext component is sensitive to it
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }

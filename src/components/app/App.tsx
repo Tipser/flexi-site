@@ -34,7 +34,7 @@ const tipserElementsConfig = {
 class App extends React.Component {
   render() {
     return (
-      <TipserElementsProvider posId={POS_ID} config={tipserElementsConfig} isSentryEnabled={false}>
+      <TipserElementsProvider posId={POS_ID} config={tipserElementsConfig}>
         <div className="te-site">
           <div className="main-container">
             <Header />
