@@ -62,4 +62,65 @@ select {
   box-sizing: border-box;
   font-family: 'Gotham', Helvetica, Arial, sans-serif;
   font-weight: 200;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.main-container {
+  margin: 15px;
+
+  .search-input {
+    border: 1px solid black;
+  }
+
+  .menu-button {
+    padding: 5px 10px;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+
+  .top-bar {
+    margin-bottom: 10px;
+
+    .second-row {
+      display: flex;
+      justify-content: space-between;
+
+      .cart-container {
+        margin-left: 10px;
+      }
+
+      &-element {
+
+      }
+
+      &-right-container {
+        display: flex;
+      }
+    }
+
+  }
+
+}
+
+.footer {
+  height: 150px;
+  background: lightgrey;
+
+  &-inner-container {
+    padding: 15px;
+  }
+
+  &-links-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-items: center;
+  }
+
+  &-link {
+       margin-right: 15px;
+  }
+
 }

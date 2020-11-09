@@ -1,179 +1,239 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, RouteProps, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import {
-  TipserElementsProvider,
-  Page,
-  Checkout,
-  TipserEnv,
-  TipserLang,
-  ProductContext,
-  SimilarProducts,
-  StyleWithProducts,
-  ProductDescription,
-  ProductContainer,
-} from '@tipser/tipser-elements/dist/all';
-import Header from '../header';
-import Footer from '../footer';
+import { TipserElementsProvider, TipserEnv, TipserLang, Cart, Page, Collection, ProductContext, Checkout } from '@tipser/tipser-elements/dist/all';
 import './App.scss';
 import '@tipser/tipser-elements/dist/index.css';
-import { FrenchProduct } from '../../views/french-product/french-product';
-import { CheckoutMultipage } from '../../views/checkout-multi-page/checkout-multipage';
-import { EmbeddedProductDemo } from '../../views/embedded-product';
-import { TipserElementsConfig } from '@tipser/tipser-elements/dist/config';
+import { useParams } from 'react-router';
 
-const CONTENTFUL_PAGE_ID = '45AiTC5HiNHzPsiWEbu2NK'; // https://app.contentful.com/spaces/i8t5uby4h6ds/entries/11sOn6krBDjuU0WmyAPKB6 5e5cc8df1f172b0001f8174d
+//TODO: export this typing from TE library
+
+const CONTENTFUL_PAGE_ID = '45AiTC5HiNHzPsiWEbu2NK';
 const POS_ID = '5f738fdd023072000132ae3b';
-const POS_ID_DIMENSION = 'dimension1';
-declare const ga: any; //ga() function comng from analytics.js library
 
-const qs = window.location.search
-  .replace(/^\?/, '')
-  .split('&')
-  .map((param) => param.split('='))
-  .filter(([key]) => key === 'lang')
-  .map(([_, value]) => value)[0];
-
-function asTipserLang(lang: string): TipserLang {
-  if (Object.values(TipserLang).includes(lang as TipserLang)) {
-    return lang as TipserLang;
-  }
-  return TipserLang.enGB;
-}
-
-let tipserConfig = {
-  lang: asTipserLang(qs),
-  env: TipserEnv.stage,
-  primaryColor: '#222',
-  useDefaultErrorHandler: true,
+const tipserConfig = {
+  lang: TipserLang.enGB,
+  env: TipserEnv.dev,
   openOldDialog: false,
   openOldCheckout: true,
   addToCartSettings: {
     directToCheckoutMode: false,
   },
-  contentfulApiKey: "RTiOcJ_L-KizTMuQXMPtc6FeekTSfg7cLWYCTdVdOJQ",
-  contentfulSpace: "6q7jkzyrpea6"
+  customUrls: {
+    productUrl: '/product',
+    checkoutUrl: '/checkout',
+    checkoutConfirmationUrl: '/checkout-confirmation',
+  },
+  contentfulApiKey: 'RTiOcJ_L-KizTMuQXMPtc6FeekTSfg7cLWYCTdVdOJQ',
+  contentfulSpace: '6q7jkzyrpea6',
 };
 
-const RouterHistory = withRouter(({ children, history }: any) => {
-  return children(history);
-});
-
-class RouteWithGA<T> extends Route<T & RouteProps> {
-  componentDidMount() {
-    ga('send', 'pageview');
-  }
-
-  componentDidUpdate(prevProps: RouteProps) {
-    if (!prevProps.location || !this.props.location) {
-      return;
-    }
-    if (prevProps.location.pathname !== this.props.location.pathname) {
-      ga('set', 'page', this.props.location.pathname);
-      ga('send', 'pageview');
-    }
-  }
-}
-
-class RouteWithTeProvider extends RouteWithGA<{ posId: string; overrideConfig?: Partial<TipserElementsConfig> }> {
-  componentDidMount() {
-    ga('set', POS_ID_DIMENSION, this.props.posId);
-    super.componentDidMount();
-  }
-
-  onLangChange = (lang) => {
-    const queryParams = new URLSearchParams(window.location.search);
-    queryParams.set('lang', lang);
-    // eslint-disable-next-line no-restricted-globals
-    history.replaceState(null, '', '?' + queryParams.toString());
-    // eslint-disable-next-line no-restricted-globals
-    location.reload();
-  };
-
-  render() {
-    const { children, posId } = this.props;
-    const overrideConfig = this.props.overrideConfig || {};
-    return (
-      <RouterHistory>
-        {(history) => {
-          const Provider = TipserElementsProvider as any;
-          return (
-            <Provider
-              posId={posId}
-              config={{ ...tipserConfig, ...overrideConfig } as any}
-              isSentryEnabled={true}
-              history={history}
-            >
-              <div className="te-site">
-                <Header onLangChange={this.onLangChange} />
-                <div className="site-body">{children}</div>
-                <Footer />
+const MainPage = () => (
+  <div className="te-site">
+    <div className="main-container">
+      <div className="top-bar">
+        <div className="first-row">
+          <h1>Boutique douze</h1>
+        </div>
+        <div>
+          <div className="second-row">
+            <div className="second-row-left-container">
+              <div className="menu-button second-row-element">Menu button</div>
+            </div>
+            <div className="second-row-right-container">
+              <input className="second-row-element search-input" />
+              <div className="second-row-element cart-container">
+                <Cart />
               </div>
-            </Provider>
-          );
-        }}
-      </RouterHistory>
-    );
-  }
-}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="content">
+        <Page id={CONTENTFUL_PAGE_ID} />
+        <Collection id="2ZoLS24ezM9ITihWamUV32" />
+      </div>
+    </div>
+    <footer className="footer">
+      <div className="footer-inner-container">
+      <h2>Footer</h2>
+      <div className="footer-links-container">
+        <div className="footer-link" >
+          <a href="#">Terms</a>
+        </div>
+        <div className="footer-link" >
+          <a href="#">Privacy Notice</a>
+        </div>
+        <div className="footer-link" >
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+      </div>
+    </footer>
+  </div>
+);
 
-// const PageWithSlug = withRouter((props) => <PageBySlug slug={props.match.params.slug} />);
+const ProductPage = () => {
+  const { productId } = useParams();
+  return (<div className="te-site">
+    <div className="main-container">
+      <div className="top-bar">
+        <div className="first-row">
+          <h1>Boutique douze</h1>
+        </div>
+        <div>
+          <div className="second-row">
+            <div className="second-row-left-container">
+              <div className="menu-button second-row-element">Menu button</div>
+            </div>
+            <div className="second-row-right-container">
+              <input className="second-row-element search-input"/>
+              <div className="second-row-element cart-container">
+                <Cart/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="content">
+        <ProductContext productId={productId as any}></ProductContext>
+      </div>
+    </div>
+    <footer className="footer">
+      <div className="footer-inner-container">
+        <h2>Footer</h2>
+        <div className="footer-links-container">
+          <div className="footer-link">
+            <a href="#">Terms</a>
+          </div>
+          <div className="footer-link">
+            <a href="#">Privacy Notice</a>
+          </div>
+          <div className="footer-link">
+            <a href="#">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+)
+};
+
+const CollectionPage = () => {
+  const { collectionId } = useParams();
+  return (<div className="te-site">
+      <div className="main-container">
+        <div className="top-bar">
+          <div className="first-row">
+            <h1>Boutique douze</h1>
+          </div>
+          <div>
+            <div className="second-row">
+              <div className="second-row-left-container">
+                <div className="menu-button second-row-element">Menu button</div>
+              </div>
+              <div className="second-row-right-container">
+                <input className="second-row-element search-input"/>
+                <div className="second-row-element cart-container">
+                  <Cart/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content">
+          <Collection collectionId={collectionId}></Collection>
+        </div>
+      </div>
+      <footer className="footer">
+        <div className="footer-inner-container">
+          <h2>Footer</h2>
+          <div className="footer-links-container">
+            <div className="footer-link">
+              <a href="#">Terms</a>
+            </div>
+            <div className="footer-link">
+              <a href="#">Privacy Notice</a>
+            </div>
+            <div className="footer-link">
+              <a href="#">Cookies</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+};
+
+const CheckoutPage = () => {
+  return (<div className="te-site">
+      <div className="main-container">
+        <div className="top-bar">
+          <div className="first-row">
+            <h1>Boutique douze</h1>
+          </div>
+          <div>
+            <div className="second-row">
+              <div className="second-row-left-container">
+                <div className="menu-button second-row-element">Menu button</div>
+              </div>
+              <div className="second-row-right-container">
+                <input className="second-row-element search-input"/>
+                <div className="second-row-element cart-container">
+                  <Cart/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content">
+          <Checkout />
+        </div>
+      </div>
+      <footer className="footer">
+        <div className="footer-inner-container">
+          <h2>Footer</h2>
+          <div className="footer-links-container">
+            <div className="footer-link">
+              <a href="#">Terms</a>
+            </div>
+            <div className="footer-link">
+              <a href="#">Privacy Notice</a>
+            </div>
+            <div className="footer-link">
+              <a href="#">Cookies</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+};
 
 class App extends React.Component {
   render() {
     return (
-      <Router>
-        <Switch>
-          <RouteWithTeProvider exact path="/" posId={POS_ID}>
-            <Page id={CONTENTFUL_PAGE_ID} />
-          </RouteWithTeProvider>
-
-          <RouteWithTeProvider path="/modular-product-default/:productId" posId={POS_ID}>
-            <EmbeddedProductDemo />
-          </RouteWithTeProvider>
-          <RouteWithTeProvider
-            path="/modular-product-default"
-            posId={POS_ID}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: '50px' }}>
-              <ProductContext productId="5c751cf82d3f3b0001bcec8c" />
-            </div>
-          </RouteWithTeProvider>
-
-          <RouteWithTeProvider path="/modular-product" posId={POS_ID}>
-            <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: '50px' }}>
-              <ProductContext productId="5c751cf82d3f3b0001bcec8c">
-                {(productContext) => (
-                  <>
-                    <ProductDescription {...productContext} />
-                    <StyleWithProducts {...productContext} />
-                    <ProductContainer {...productContext} />
-                    <SimilarProducts {...productContext} />
-                  </>
-                )}
-              </ProductContext>
-            </div>
-          </RouteWithTeProvider>
-          <RouteWithTeProvider path="/french-product" posId={POS_ID}>
-            <FrenchProduct />
-          </RouteWithTeProvider>
-          <RouteWithTeProvider path="/checkout" posId={POS_ID}>
-            <Checkout />
-          </RouteWithTeProvider>
-          <RouteWithTeProvider path="/checkout-confirmation" posId={POS_ID}>
-            <Checkout />
-          </RouteWithTeProvider>
-          <RouteWithTeProvider path="/checkout-multipage" posId={POS_ID}>
-            <CheckoutMultipage />
-          </RouteWithTeProvider>
-          <RouteWithTeProvider
-            path="/embedded-product/:productId"
-            posId={POS_ID}
-          >
-            <EmbeddedProductDemo />
-          </RouteWithTeProvider>
-        </Switch>
-      </Router>
+      <TipserElementsProvider posId={POS_ID} config={tipserConfig} isSentryEnabled={false}>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <MainPage />
+            </Route>
+            <Route exact path="/product/:productId">
+              <ProductPage />
+            </Route>
+            <Route exact path="/store/:collectionId">
+              <CollectionPage />
+            </Route>
+            <Route path="/checkout">
+              <CheckoutPage />
+            </Route>
+            <Route path="/checkout-confirmation">
+              <CheckoutPage />
+            </Route>
+          </Switch>
+        </Router>
+      </TipserElementsProvider>
     );
   }
 }
