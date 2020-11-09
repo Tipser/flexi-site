@@ -1,17 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { TipserElementsProvider, TipserEnv, TipserLang, Cart, Page, Collection, ProductContext, Checkout, PageBySlug } from '@tipser/tipser-elements/dist/all';
+import { TipserElementsProvider, TipserEnv, TipserLang } from '@tipser/tipser-elements/dist/all';
+
+import Header from '../header';
+import Footer from '../footer';
+import Routes from '../routes';
+
 import './App.scss';
 import '@tipser/tipser-elements/dist/index.css';
-import { useParams } from 'react-router';
 
-//TODO: export this typing from TE library
+const CONTENTFUL_API_KEY = 'RTiOcJ_L-KizTMuQXMPtc6FeekTSfg7cLWYCTdVdOJQ';
+const CONTENTFUL_SPACE_ID = '6q7jkzyrpea6';
 
-const CONTENTFUL_PAGE_ID = '45AiTC5HiNHzPsiWEbu2NK';
 const POS_ID = '5f738fdd023072000132ae3b';
 
-const tipserConfig = {
+const tipserElementsConfig = {
   lang: TipserLang.enGB,
   env: TipserEnv.dev,
   openOldDialog: false,
@@ -24,264 +27,25 @@ const tipserConfig = {
     checkoutUrl: '/checkout',
     checkoutConfirmationUrl: '/checkout-confirmation',
   },
-  contentfulApiKey: 'RTiOcJ_L-KizTMuQXMPtc6FeekTSfg7cLWYCTdVdOJQ',
-  contentfulSpace: '6q7jkzyrpea6',
-};
-
-const MainPage = () => (
-  <div className="te-site">
-    <div className="main-container">
-      <div className="top-bar">
-        <div className="first-row">
-          <h1>Boutique douze</h1>
-        </div>
-        <div>
-          <div className="second-row">
-            <div className="second-row-left-container">
-              <div className="menu-button second-row-element">Menu button</div>
-            </div>
-            <div className="second-row-right-container">
-              <input className="second-row-element search-input" />
-              <div className="second-row-element cart-container">
-                <Cart />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="content">
-        <Page id={CONTENTFUL_PAGE_ID} />
-        <Collection id="2ZoLS24ezM9ITihWamUV32" />
-      </div>
-    </div>
-    <footer className="footer">
-      <div className="footer-inner-container">
-      <h2>Footer</h2>
-      <div className="footer-links-container">
-        <div className="footer-link" >
-          <a href="/test">Terms</a>
-        </div>
-        <div className="footer-link" >
-          <a href="/test">Privacy Notice</a>
-        </div>
-        <div className="footer-link" >
-          <a href="/test">Cookies</a>
-        </div>
-      </div>
-      </div>
-    </footer>
-  </div>
-);
-
-const ProductPage = () => {
-  const { productId } = useParams();
-  return (<div className="te-site">
-    <div className="main-container">
-      <div className="top-bar">
-        <div className="first-row">
-          <h1>Boutique douze</h1>
-        </div>
-        <div>
-          <div className="second-row">
-            <div className="second-row-left-container">
-              <div className="menu-button second-row-element">Menu button</div>
-            </div>
-            <div className="second-row-right-container">
-              <input className="second-row-element search-input"/>
-              <div className="second-row-element cart-container">
-                <Cart/>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="content">
-        <ProductContext productId={productId as any}></ProductContext>
-      </div>
-    </div>
-    <footer className="footer">
-      <div className="footer-inner-container">
-        <h2>Footer</h2>
-        <div className="footer-links-container">
-          <div className="footer-link">
-            <a href="/test">Terms</a>
-          </div>
-          <div className="footer-link">
-            <a href="/test">Privacy Notice</a>
-          </div>
-          <div className="footer-link">
-            <a href="/test">Cookies</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-)
-};
-
-const CollectionPage = () => {
-  const { collectionId } = useParams();
-  return (<div className="te-site">
-      <div className="main-container">
-        <div className="top-bar">
-          <div className="first-row">
-            <h1>Boutique douze</h1>
-          </div>
-          <div>
-            <div className="second-row">
-              <div className="second-row-left-container">
-                <div className="menu-button second-row-element">Menu button</div>
-              </div>
-              <div className="second-row-right-container">
-                <input className="second-row-element search-input"/>
-                <div className="second-row-element cart-container">
-                  <Cart/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="content">
-          <Collection collectionId={collectionId}></Collection>
-        </div>
-      </div>
-      <footer className="footer">
-        <div className="footer-inner-container">
-          <h2>Footer</h2>
-          <div className="footer-links-container">
-            <div className="footer-link">
-              <a href="/test">Terms</a>
-            </div>
-            <div className="footer-link">
-              <a href="/test">Privacy Notice</a>
-            </div>
-            <div className="footer-link">
-              <a href="/test">Cookies</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  )
-};
-
-const CheckoutPage = () => {
-  return (<div className="te-site">
-      <div className="main-container">
-        <div className="top-bar">
-          <div className="first-row">
-            <h1>Boutique douze</h1>
-          </div>
-          <div>
-            <div className="second-row">
-              <div className="second-row-left-container">
-                <div className="menu-button second-row-element">Menu button</div>
-              </div>
-              <div className="second-row-right-container">
-                <input className="second-row-element search-input"/>
-                <div className="second-row-element cart-container">
-                  <Cart/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="content">
-          <Checkout />
-        </div>
-      </div>
-      <footer className="footer">
-        <div className="footer-inner-container">
-          <h2>Footer</h2>
-          <div className="footer-links-container">
-            <div className="footer-link">
-              <a href="/test">Terms</a>
-            </div>
-            <div className="footer-link">
-              <a href="/test">Privacy Notice</a>
-            </div>
-            <div className="footer-link">
-              <a href="/test">Cookies</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  )
-};
-
-const OpenPageBySlug = () => {
-  const { slug } = useParams();
-  return (<div className="te-site">
-      <div className="main-container">
-        <div className="top-bar">
-          <div className="first-row">
-            <h1>Boutique douze</h1>
-          </div>
-          <div>
-            <div className="second-row">
-              <div className="second-row-left-container">
-                <div className="menu-button second-row-element">Menu button</div>
-              </div>
-              <div className="second-row-right-container">
-                <input className="second-row-element search-input"/>
-                <div className="second-row-element cart-container">
-                  <Cart/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="content">
-          <PageBySlug slug={slug}></PageBySlug>
-        </div>
-      </div>
-      <footer className="footer">
-        <div className="footer-inner-container">
-          <h2>Footer</h2>
-          <div className="footer-links-container">
-            <div className="footer-link">
-              <a href="/test">Terms</a>
-            </div>
-            <div className="footer-link">
-              <a href="/test">Privacy Notice</a>
-            </div>
-            <div className="footer-link">
-              <a href="/test">Cookies</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  )
+  contentfulApiKey: CONTENTFUL_API_KEY,
+  contentfulSpace: CONTENTFUL_SPACE_ID,
 };
 
 class App extends React.Component {
   render() {
     return (
-      <TipserElementsProvider posId={POS_ID} config={tipserConfig} isSentryEnabled={false}>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <MainPage />
-            </Route>
-            <Route exact path="/product/:productId">
-              <ProductPage />
-            </Route>
-            <Route exact path="/store/:collectionId">
-              <CollectionPage />
-            </Route>
-            <Route exact path="/c/:slug">
-              <OpenPageBySlug />
-            </Route>
-            <Route path="/checkout">
-              <CheckoutPage />
-            </Route>
-            <Route path="/checkout-confirmation">
-              <CheckoutPage />
-            </Route>
-          </Switch>
-        </Router>
+      <TipserElementsProvider posId={POS_ID} config={tipserElementsConfig} isSentryEnabled={false}>
+        <div className="te-site">
+          <div className="main-container">
+            <Header />
+
+            <div className="content">
+              <Routes />
+            </div>
+
+            <Footer />
+          </div>
+        </div>
       </TipserElementsProvider>
     );
   }

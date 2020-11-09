@@ -80,47 +80,4 @@ select {
     cursor: pointer;
   }
 
-  .top-bar {
-    margin-bottom: 10px;
-
-    .second-row {
-      display: flex;
-      justify-content: space-between;
-
-      .cart-container {
-        margin-left: 10px;
-      }
-
-      &-element {
-
-      }
-
-      &-right-container {
-        display: flex;
-      }
-    }
-
-  }
-
-}
-
-.footer {
-  height: 150px;
-  background: lightgrey;
-
-  &-inner-container {
-    padding: 15px;
-  }
-
-  &-links-container {
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-    justify-items: center;
-  }
-
-  &-link {
-       margin-right: 15px;
-  }
-
 }
