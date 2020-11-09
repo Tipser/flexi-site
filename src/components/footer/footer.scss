@@ -15,5 +15,9 @@
 
   &-link {
     margin-right: 15px;
+
+    &-active {
+      font-weight: 800;
+    }
   }
 }

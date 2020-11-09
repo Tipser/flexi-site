@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './footer.scss';
 
@@ -7,15 +8,15 @@ const Footer = () => (
     <div className="footer-inner-container">
       <h2>Footer</h2>
       <div className="footer-links-container">
-        <div className="footer-link">
-          <a href="/test">Terms</a>
-        </div>
-        <div className="footer-link">
-          <a href="/test">Privacy Notice</a>
-        </div>
-        <div className="footer-link">
-          <a href="/test">Cookies</a>
-        </div>
+        <NavLink className="footer-link" activeClassName="footer-link-active" to="/c/terms">
+          Terms
+        </NavLink>
+        <NavLink className="footer-link" activeClassName="footer-link-active" to="/c/privacy-notice">
+          Privacy Notice
+        </NavLink>
+        <NavLink className="footer-link" activeClassName="footer-link-active" to="/c/cookie-terms">
+          Cookies
+        </NavLink>
       </div>
     </div>
   </footer>

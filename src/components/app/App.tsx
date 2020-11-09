@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 import { TipserElementsProvider, TipserEnv, TipserLang } from '@tipser/tipser-elements/dist/all';
 
 import Header from '../header';
@@ -35,6 +35,7 @@ class App extends React.Component {
   render() {
     return (
       <TipserElementsProvider posId={POS_ID} config={tipserElementsConfig}>
+        <Router>
         <div className="te-site">
           <div className="main-container">
             <Header />
@@ -46,6 +47,7 @@ class App extends React.Component {
             <Footer />
           </div>
         </div>
+        </Router>
       </TipserElementsProvider>
     );
   }

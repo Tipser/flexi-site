@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { useParams } from 'react-router';
 
 import { Page, Collection, ProductContext, Checkout, PageBySlug } from '@tipser/tipser-elements/dist/all';
@@ -49,28 +49,26 @@ const CheckoutPage = () => {
 };
 
 const Routes = () => (
-  <Router>
-    <Switch>
-      <Route exact path="/">
-        <MainPage />
-      </Route>
-      <Route exact path="/product/:productId">
-        <ProductPage />
-      </Route>
-      <Route exact path="/store/:collectionId">
-        <CollectionPage />
-      </Route>
-      <Route exact path="/c/:slug">
-        <CustomPage />
-      </Route>
-      <Route path="/checkout">
-        <CheckoutPage />
-      </Route>
-      <Route path="/checkout-confirmation">
-        <CheckoutPage />
-      </Route>
-    </Switch>
-  </Router>
+  <Switch>
+    <Route exact path="/">
+      <MainPage />
+    </Route>
+    <Route exact path="/product/:productId">
+      <ProductPage />
+    </Route>
+    <Route exact path="/store/:collectionId">
+      <CollectionPage />
+    </Route>
+    <Route exact path="/c/:slug">
+      <CustomPage />
+    </Route>
+    <Route path="/checkout">
+      <CheckoutPage />
+    </Route>
+    <Route path="/checkout-confirmation">
+      <CheckoutPage />
+    </Route>
+  </Switch>
 );
 
 export default Routes;
