@@ -2,14 +2,11 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useParams } from 'react-router';
 
-import { Page, Collection, ProductContext, Checkout, PageBySlug } from '@tipser/tipser-elements/dist/all';
-
-const CONTENTFUL_MAIN_PAGE_ID = '45AiTC5HiNHzPsiWEbu2NK';
+import { RootPage, Collection, ProductContext, Checkout, PageBySlug } from '@tipser/tipser-elements/dist/all';
 
 const MainPage = () => (
   <>
-    <Page id={CONTENTFUL_MAIN_PAGE_ID} />
-    <Collection id="2ZoLS24ezM9ITihWamUV32" />
+    <RootPage />
   </>
 );
 

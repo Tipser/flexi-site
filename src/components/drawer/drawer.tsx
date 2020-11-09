@@ -8,7 +8,6 @@ interface DrawerProps {
   header?: string;
   children?: any;
   visible?: boolean;
-  placeholder?: any;
   onClose?: () => void;
   responsive?: boolean;
   zIndex?: number;
@@ -20,7 +19,7 @@ interface DrawerProps {
 }
 
 function shouldNonInlineDrawerBeVisible(props: DrawerProps): boolean {
-  return !!props.visible && !props.inline; // Jonas: !! evaluates for undefined or null
+  return !!props.visible && !props.inline;
 }
 
 function disableBodyScroll(): void {

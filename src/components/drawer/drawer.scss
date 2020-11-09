@@ -1,3 +1,5 @@
+$screen-md-min: 768px;
+
 .drawer-container {
   & > .overlay {
     position: fixed;
@@ -143,10 +145,10 @@
         bottom: 0;
         right: 20px; //fullwidth for small resolutions
         transform: translateY(0);
-        // @media @small-and-more {
-        //     min-width: 470px; // disable full width and set max-width
-        //     right: auto;
-        // }
+        @media (min-width: #{$screen-md-min}) {
+          min-width: 470px; // disable full width and set max-width
+          right: auto;
+        }
       }
 
       &.offscreen {

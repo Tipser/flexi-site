@@ -1,9 +1,13 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { Cart } from '@tipser/tipser-elements/dist/all';
 
 import './header.scss';
 
-const Header = () => (
+type Props = {
+  onShowDrawer?: () => void;
+};
+
+const Header: FC<Props> = ({onShowDrawer}) => (
   <div className="header">
     <div className="first-row">
       <h1>Boutique douze</h1>
@@ -11,7 +15,7 @@ const Header = () => (
     <div>
       <div className="second-row">
         <div className="second-row-left-container">
-          <div className="menu-button second-row-element">Menu button</div>
+          <div className="menu-button second-row-element" onClick={onShowDrawer}>Menu button</div>
         </div>
         <div className="second-row-right-container">
           <input className="second-row-element search-input" />

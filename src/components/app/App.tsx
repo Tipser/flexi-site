@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { TipserElementsProvider, TipserEnv, TipserLang } from '@tipser/tipser-elements/dist/all';
+import { TipserElementsProvider, TipserEnv, TipserLang, Site, MainMenu } from '@tipser/tipser-elements/dist/all';
 
 import Header from '../header';
 import Footer from '../footer';
 import Routes from '../routes';
+import Drawer from '../drawer';
 
 import './App.scss';
 import '@tipser/tipser-elements/dist/index.css';
@@ -13,6 +14,7 @@ const CONTENTFUL_API_KEY = 'RTiOcJ_L-KizTMuQXMPtc6FeekTSfg7cLWYCTdVdOJQ';
 const CONTENTFUL_SPACE_ID = '6q7jkzyrpea6';
 
 const POS_ID = '5f738fdd023072000132ae3b';
+const SITE_ID = '2UnAzlUb10zqwGgXgIU8bD';
 
 const tipserElementsConfig = {
   lang: TipserLang.enGB,
@@ -31,14 +33,31 @@ const tipserElementsConfig = {
   contentfulSpace: CONTENTFUL_SPACE_ID,
 };
 
-class App extends React.Component {
-  render() {
-    return (
-      <TipserElementsProvider posId={POS_ID} config={tipserElementsConfig}>
-        <Router>
+const App = () => {
+  const [drawerVisible, setDrawerVisible] = useState(false);
+
+  return (
+    <TipserElementsProvider posId={POS_ID} config={tipserElementsConfig}>
+      <Site id={SITE_ID} />
+      <Drawer
+        header="My drawer"
+        visible={drawerVisible}
+        responsive={true}
+        slideDirection="left"
+        onClose={() => setDrawerVisible(false)}
+      >
+        <div className="menu-items">
+          <MainMenu
+            onClick={() => {
+              setDrawerVisible(false);
+            }}
+          />
+        </div>
+      </Drawer>
+      <Router>
         <div className="te-site">
           <div className="main-container">
-            <Header />
+            <Header onShowDrawer={() => setDrawerVisible(true)} />
 
             <div className="content">
               <Routes />
@@ -47,10 +66,9 @@ class App extends React.Component {
             <Footer />
           </div>
         </div>
-        </Router>
-      </TipserElementsProvider>
-    );
-  }
-}
+      </Router>
+    </TipserElementsProvider>
+  );
+};
 
 export default App;
