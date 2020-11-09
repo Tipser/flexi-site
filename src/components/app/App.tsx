@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { TipserElementsProvider, TipserEnv, TipserLang, Cart, Page, Collection, ProductContext, Checkout } from '@tipser/tipser-elements/dist/all';
+import { TipserElementsProvider, TipserEnv, TipserLang, Cart, Page, Collection, ProductContext, Checkout, PageBySlug } from '@tipser/tipser-elements/dist/all';
 import './App.scss';
 import '@tipser/tipser-elements/dist/index.css';
 import { useParams } from 'react-router';
@@ -59,13 +59,13 @@ const MainPage = () => (
       <h2>Footer</h2>
       <div className="footer-links-container">
         <div className="footer-link" >
-          <a href="#">Terms</a>
+          <a href="/test">Terms</a>
         </div>
         <div className="footer-link" >
-          <a href="#">Privacy Notice</a>
+          <a href="/test">Privacy Notice</a>
         </div>
         <div className="footer-link" >
-          <a href="#">Cookies</a>
+          <a href="/test">Cookies</a>
         </div>
       </div>
       </div>
@@ -104,13 +104,13 @@ const ProductPage = () => {
         <h2>Footer</h2>
         <div className="footer-links-container">
           <div className="footer-link">
-            <a href="#">Terms</a>
+            <a href="/test">Terms</a>
           </div>
           <div className="footer-link">
-            <a href="#">Privacy Notice</a>
+            <a href="/test">Privacy Notice</a>
           </div>
           <div className="footer-link">
-            <a href="#">Cookies</a>
+            <a href="/test">Cookies</a>
           </div>
         </div>
       </div>
@@ -150,13 +150,13 @@ const CollectionPage = () => {
           <h2>Footer</h2>
           <div className="footer-links-container">
             <div className="footer-link">
-              <a href="#">Terms</a>
+              <a href="/test">Terms</a>
             </div>
             <div className="footer-link">
-              <a href="#">Privacy Notice</a>
+              <a href="/test">Privacy Notice</a>
             </div>
             <div className="footer-link">
-              <a href="#">Cookies</a>
+              <a href="/test">Cookies</a>
             </div>
           </div>
         </div>
@@ -195,13 +195,59 @@ const CheckoutPage = () => {
           <h2>Footer</h2>
           <div className="footer-links-container">
             <div className="footer-link">
-              <a href="#">Terms</a>
+              <a href="/test">Terms</a>
             </div>
             <div className="footer-link">
-              <a href="#">Privacy Notice</a>
+              <a href="/test">Privacy Notice</a>
             </div>
             <div className="footer-link">
-              <a href="#">Cookies</a>
+              <a href="/test">Cookies</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+};
+
+const OpenPageBySlug = () => {
+  const { slug } = useParams();
+  return (<div className="te-site">
+      <div className="main-container">
+        <div className="top-bar">
+          <div className="first-row">
+            <h1>Boutique douze</h1>
+          </div>
+          <div>
+            <div className="second-row">
+              <div className="second-row-left-container">
+                <div className="menu-button second-row-element">Menu button</div>
+              </div>
+              <div className="second-row-right-container">
+                <input className="second-row-element search-input"/>
+                <div className="second-row-element cart-container">
+                  <Cart/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content">
+          <PageBySlug slug={slug}></PageBySlug>
+        </div>
+      </div>
+      <footer className="footer">
+        <div className="footer-inner-container">
+          <h2>Footer</h2>
+          <div className="footer-links-container">
+            <div className="footer-link">
+              <a href="/test">Terms</a>
+            </div>
+            <div className="footer-link">
+              <a href="/test">Privacy Notice</a>
+            </div>
+            <div className="footer-link">
+              <a href="/test">Cookies</a>
             </div>
           </div>
         </div>
@@ -224,6 +270,9 @@ class App extends React.Component {
             </Route>
             <Route exact path="/store/:collectionId">
               <CollectionPage />
+            </Route>
+            <Route exact path="/c/:slug">
+              <OpenPageBySlug />
             </Route>
             <Route path="/checkout">
               <CheckoutPage />
