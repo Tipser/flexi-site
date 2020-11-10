@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { TipserElementsProvider, TipserEnv, TipserLang, Site, MainMenu } from '@tipser/tipser-elements/dist/all';
 
 import Header from '../header';
@@ -16,16 +17,20 @@ const CONTENTFUL_SPACE_ID = '6q7jkzyrpea6';
 const POS_ID = '5f738fdd023072000132ae3b';
 const SITE_ID = '2UnAzlUb10zqwGgXgIU8bD';
 
-const tipserElementsConfig = {
+const history = createBrowserHistory();
+
+//TODO: uncomment the typing as soon as it's fixed
+const tipserElementsConfig /*: TipserElementsConfigProp*/ = {
   lang: TipserLang.enGB,
   env: TipserEnv.dev,
   openOldDialog: false,
   openOldCheckout: true,
+  history: history,
   addToCartSettings: {
     directToCheckoutMode: false,
   },
   customUrls: {
-    productUrl: '/product',
+    productBaseUrl: '/product',
     checkoutUrl: '/checkout',
     checkoutConfirmationUrl: '/checkout-confirmation',
   },
@@ -54,7 +59,7 @@ const App = () => {
           />
         </div>
       </Drawer>
-      <Router>
+      <Router history={history}>
         <div className="te-site">
           <div className="main-container">
             <Header onShowDrawer={() => setDrawerVisible(true)} />
