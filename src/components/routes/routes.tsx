@@ -11,16 +11,16 @@ const MainPage = () => (
 );
 
 const ProductPage = () => {
-  const { productId } = useParams();
+  const { productId } = useParams<{ productId: string }>();
   return (
     <>
-      <ProductContext productId={productId as any}></ProductContext>
+      <ProductContext productId={productId}></ProductContext>
     </>
   );
 };
 
 const CustomPage = () => {
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
   return (
     <>
       <PageBySlug slug={slug}></PageBySlug>
@@ -29,7 +29,7 @@ const CustomPage = () => {
 };
 
 const CollectionPage = () => {
-  const { collectionId } = useParams();
+  const { collectionId } = useParams<{ collectionId: string }>();
   return (
     <>
       <Collection collectionId={collectionId}></Collection>
