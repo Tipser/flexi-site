@@ -75,7 +75,7 @@ a:active {
 }
 
 .main-container {
-  margin: 15px;
+  margin: 0;
 
   .search-input {
     border: 1px solid black;
@@ -100,6 +100,7 @@ a:active {
 .content {
   display: flex;
   justify-content: center;
+  min-height: 80vh;
 }
 
 .te-page {

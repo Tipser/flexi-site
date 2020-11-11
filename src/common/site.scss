@@ -39,7 +39,24 @@ body {
   margin-top: 50px;
 }
 
-.te-product-basic-info {
+.content {
+
+  .te-product-context {
+    max-width: initial;
+    padding: 30px 0;
+
+    .te-dialog-description-container {
+      margin: 20px 0 80px;
+
+      .te-dialog-description-content {
+        line-height: 1.5;
+      }
+
+    }
+
+
+  }
+
 }
 
 .te-article {
@@ -90,6 +107,28 @@ body {
     margin: 0 auto;
   }
 }
+
+.drawer {
+
+  &.drawer-responsive {
+    .content {
+      justify-content: left;
+    }
+  }
+
+}
+
+
+.menu-items {
+
+  margin-top: 40px;
+
+  .te-menu { 
+    line-height: 2;  
+  }
+}
+
+
 
 .te-product-details {
   font-size: 19px;
