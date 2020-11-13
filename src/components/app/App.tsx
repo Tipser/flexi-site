@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { TipserElementsProvider, TipserEnv, TipserLang, Site, MainMenu } from '@tipser/tipser-elements/dist/all';
+import {
+  TipserElementsProvider,
+  TipserEnv,
+  TipserLang,
+  Site,
+  MainMenu,
+  TipserElementsConfigProp,
+} from '@tipser/tipser-elements/dist/all';
 
 import Header from '../header';
 import Footer from '../footer';
@@ -24,7 +31,7 @@ const tipserElementsConfig /*: TipserElementsConfigProp*/ = {
   lang: TipserLang.enGB,
   env: TipserEnv.dev,
   openOldDialog: false,
-  openOldCheckout: true,
+  cartIconDropdown: true,
   history: history,
   addToCartSettings: {
     directToCheckoutMode: false,

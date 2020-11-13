@@ -8,13 +8,13 @@ const Footer = () => (
     <div className="footer-inner-container">
       <h2>Footer</h2>
       <div className="footer-links-container">
-        <NavLink className="footer-link" activeClassName="footer-link-active" to="/c/terms">
+        <NavLink className="footer-link" activeClassName="footer-link-active" to="/terms">
           Terms
         </NavLink>
-        <NavLink className="footer-link" activeClassName="footer-link-active" to="/c/privacy-notice">
+        <NavLink className="footer-link" activeClassName="footer-link-active" to="/privacy-notice">
           Privacy Notice
         </NavLink>
-        <NavLink className="footer-link" activeClassName="footer-link-active" to="/c/cookie-terms">
+        <NavLink className="footer-link" activeClassName="footer-link-active" to="/cookie-terms">
           Cookies
         </NavLink>
       </div>

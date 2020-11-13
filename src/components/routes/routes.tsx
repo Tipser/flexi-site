@@ -56,14 +56,14 @@ const Routes = () => (
     <Route exact path="/store/:collectionId">
       <CollectionPage />
     </Route>
-    <Route exact path="/c/:slug">
-      <CustomPage />
-    </Route>
     <Route path="/checkout">
       <CheckoutPage />
     </Route>
     <Route path="/checkout-confirmation">
       <CheckoutPage />
+    </Route>
+    <Route exact path="/:slug">
+      <CustomPage />
     </Route>
   </Switch>
 );
