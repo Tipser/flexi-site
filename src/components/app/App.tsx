@@ -26,13 +26,16 @@ const SITE_ID = '2UnAzlUb10zqwGgXgIU8bD';
 
 const history = createBrowserHistory();
 
-//TODO: uncomment the typing as soon as it's fixed
-const tipserElementsConfig /*: TipserElementsConfigProp*/ = {
+type TipserElementsConfigWithCf = TipserElementsConfigProp & {
+  contentfulApiKey: string;
+  contentfulSpace: string;
+};
+
+const tipserElementsConfig: TipserElementsConfigWithCf = {
   lang: TipserLang.enGB,
   env: TipserEnv.dev,
   openOldDialog: false,
   cartIconDropdown: true,
-  history: history,
   addToCartSettings: {
     directToCheckoutMode: false,
   },
