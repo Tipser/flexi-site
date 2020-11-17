@@ -1,7 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import './drawer.scss';
-import Icon from '../icon/icon';
 import { Portal } from 'react-portal';
 
 interface DrawerProps {

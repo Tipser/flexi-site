@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router';
 
