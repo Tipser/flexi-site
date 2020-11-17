@@ -5,7 +5,6 @@ import Icon from '../icon/icon';
 import { Portal } from 'react-portal';
 
 interface DrawerProps {
-  header?: string;
   children?: any;
   visible?: boolean;
   onClose?: () => void;
@@ -78,19 +77,6 @@ export default class Drawer extends React.Component<DrawerProps, {}> {
           })}
           style={{ zIndex: this.props.zIndex }}
         >
-          <div
-            className={classNames('header', {
-              'no-title': !this.props.header,
-            })}
-            onClick={this.props.onClose || (() => {})}
-          >
-            <span className="title">{this.props.header}</span>
-            {!this.props.disableCloseIcon && (
-              <span onClick={this.props.onClose || (() => {})} className="close">
-                <Icon name="cross" />
-              </span>
-            )}
-          </div>
           <div className="content">{this.props.children}</div>
         </div>
       </div>

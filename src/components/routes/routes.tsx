@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 import { RootPage, Collection, ProductContext, Checkout, PageBySlug } from '@tipser/tipser-elements/dist/all';
 
@@ -21,9 +21,15 @@ const ProductPage = () => {
 
 const CustomPage = () => {
   const { slug } = useParams<{ slug: string }>();
+
+  const history = useHistory();
+  const redirectTo404 = () => {
+    history.push('/404');
+  };
+
   return (
     <>
-      <PageBySlug slug={slug}></PageBySlug>
+      <PageBySlug slug={slug} onPageNotFound={redirectTo404}></PageBySlug>
     </>
   );
 };

@@ -6,7 +6,6 @@ import './footer.scss';
 const Footer = () => (
   <footer className="footer">
     <div className="footer-inner-container">
-      <h2>Footer</h2>
       <div className="footer-links-container">
         <NavLink className="footer-link" activeClassName="footer-link-active" to="/terms">
           Terms

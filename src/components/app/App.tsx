@@ -55,7 +55,6 @@ const App = () => {
     <TipserElementsProvider posId={POS_ID} config={tipserElementsConfig}>
       <Site id={SITE_ID} />
       <Drawer
-        header="My drawer"
         visible={drawerVisible}
         responsive={true}
         slideDirection="left"
