@@ -23,7 +23,7 @@ const Header: FC<Props> = ({ onShowDrawer }) => {
     <div className="header">
       <div className="first-row">
         <NavLink className="header-logo" activeClassName="header-logo-active" to="/">
-          <h1>Boutique douze</h1>
+          <h1>Flexi-site</h1>
         </NavLink>
       </div>
       <div>
