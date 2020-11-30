@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@tipser/tipser-elements": "^2.1.52-dev-796e177",
+    "@tipser/tipser-elements": "^2.1.57-dev-a5a9f85",
     "classnames": "^2.2.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-portal": "^4.2.0",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-search-field": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

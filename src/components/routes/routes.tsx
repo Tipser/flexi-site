@@ -2,7 +2,14 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router';
 
-import { RootPage, Collection, ProductContext, Checkout, PageBySlug } from '@tipser/tipser-elements/dist/all';
+import {
+  RootPage,
+  Collection,
+  ProductContext,
+  Checkout,
+  PageBySlug,
+  DynamicCollection,
+} from '@tipser/tipser-elements/dist/all';
 
 const MainPage = () => (
   <>
@@ -43,6 +50,21 @@ const CollectionPage = () => {
   );
 };
 
+const SearchPage = () => {
+  const { query } = useParams<{ query: string }>();
+  const search = {
+    query,
+    market: 'se',
+    maxResults: 15,
+  };
+
+  return (
+    <>
+      <DynamicCollection search={search}></DynamicCollection>
+    </>
+  );
+};
+
 const CheckoutPage = () => {
   return (
     <>
@@ -61,6 +83,9 @@ const Routes = () => (
     </Route>
     <Route exact path="/store/:collectionId">
       <CollectionPage />
+    </Route>
+    <Route exact path="/search/:query">
+      <SearchPage />
     </Route>
     <Route path="/checkout">
       <CheckoutPage />
