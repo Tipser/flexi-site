@@ -3,6 +3,47 @@
   padding: 10px;
   background-color: #f9f9f9;
 
+  .first-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+
+  .menu-button {
+    cursor: pointer;
+
+    .hamburger-button {
+      height: 25px;
+    }
+  }
+
+  .logo-container {
+
+    margin-right: auto;
+
+    .header-logo {
+      height: 50px;
+      width: 100px;
+    }
+
+  }
+  .te-in-view {
+    width: initial;
+
+    .cart-icon {
+
+      align-items: center;
+
+      .te-button-clear {
+        width: 25px;
+      }
+
+    }
+
+  }
+
+  }
+
 
   .second-row {
     display: flex;

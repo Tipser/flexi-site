@@ -55,7 +55,7 @@ const SearchPage = () => {
   const search = {
     query,
     market: 'se',
-    maxResults: 15,
+    maxResults: 50
   };
 
   return (
