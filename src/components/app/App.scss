@@ -80,12 +80,6 @@ a:active {
   .search-input {
     border: 1px solid black;
   }
-
-  .menu-button {
-    padding: 5px 10px;
-    border: 1px solid black;
-    cursor: pointer;
-  }
 }
 
 .te-menu {
@@ -113,4 +107,50 @@ a:active {
 
 .te-collection-container {
   width: 100%;
+
+  .te-collection {
+
+    justify-content: flex-start!important;
+
+    .te-product-card {
+      padding: 5px 5px 40px;
+
+      .te-product-card-img {
+        height: 350px;
+
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          content: ' ';
+          background-color: #0000000d;
+          z-index: 1;
+        }
+      }
+
+      .te-product-card-brand {
+        font-size: 0.8em;
+      }
+      .te-product-card-name {
+        max-width: 80%;
+      }
+
+      .te-product-card-price {
+        margin-bottom: 1em;
+      }
+
+      .te-button-text {
+        font-size: 0.7em;
+      }
+
+    }
+
+  }
+
+}
+
+.te-dialog-product-thumb {
+  cursor: pointer;
 }

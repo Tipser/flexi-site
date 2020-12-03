@@ -1,5 +1,5 @@
 # Tipser Flexi Site
-This project shows how the Tipser Elements components works in a React project, and is provided as is by tipser.com. The project is connected to both Contentful for CMS, and Tipser for products.
+This project shows how the Tipser Elements components work in a React project, and is provided as is by tipser.com. The project is connected to both Contentful for CMS, and Tipser for products.
 
 CMS content is edited directly in your Contentful account. Single products and collections are managed in the [Tipser Portal](https://app.tipser.com).
 
@@ -49,7 +49,7 @@ The `new-space-ID` is found in Contentful
 
 The `import-file-name` can be downloaded here.
 
-## Documentation
+# Tipser Elements Documentation
 
 Tipser Elements config is setup using the `tipserElementsConfig` in the `/src/components/app/App.tsx file`
 

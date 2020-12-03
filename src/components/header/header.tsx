@@ -2,6 +2,8 @@ import React, { FC, useCallback, useState } from 'react';
 import { Cart } from '@tipser/tipser-elements/dist/all';
 import { NavLink, useHistory } from 'react-router-dom';
 import SearchField from 'react-search-field';
+import { ReactComponent as Logo } from '../../assets/images/flexisite.svg';
+import { ReactComponent as Hamburger } from '../../assets/images/hamburger.svg';
 
 import './header.scss';
 
@@ -22,27 +24,25 @@ const Header: FC<Props> = ({ onShowDrawer }) => {
   return (
     <div className="header">
       <div className="first-row">
-        <NavLink className="header-logo" activeClassName="header-logo-active" to="/">
-          <h1>Flexi-site</h1>
+        <div className="menu-button first-row-element" onClick={onShowDrawer}>
+          <Hamburger className="hamburger-button"/>
+        </div>
+        <NavLink className="logo-container" activeClassName="header-logo-active" to="/">
+          <Logo className="header-logo"/>
         </NavLink>
+        <SearchField
+          placeholder="Search for products"
+          onChange={setQuery}
+          onEnter={searchConfirmed}
+          onSearchClick={searchConfirmed}
+          className="search-field"
+        />
+        <Cart />
       </div>
       <div>
         <div className="second-row">
           <div className="second-row-left-container">
-            <div className="menu-button second-row-element" onClick={onShowDrawer}>
-              Menu button
-            </div>
-          </div>
-          <div className="second-row-right-container">
-            <SearchField
-              placeholder="Search for products"
-              onChange={setQuery}
-              onEnter={searchConfirmed}
-              onSearchClick={searchConfirmed}
-            />
-            <div className="second-row-element cart-container">
-              <Cart />
-            </div>
+            <p>This is a demo site</p>
           </div>
         </div>
       </div>
